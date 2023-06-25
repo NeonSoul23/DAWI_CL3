@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+<title>Listado de películas</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Listado de Películas</h1>
+		<br>
+		<table class="table table-hover" id="myTable">
+			<thead>
+				<tr>
+					<th scope="col">Código</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Clasificación</th>
+					<th scope="col">Género</th>
+					<th scope="col">País</th>
+					<th scope="col">Popularidad</th>
+					<th scope="col">Modificar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="p : ${lstPeliculas}">
+					<td th:text=${p.codpelicula}></td>
+					<td th:text=${p.nompelicula}></td>
+					<td th:text=${p.clasificacion.nombreclas}></td>
+					<td th:text=${p.genero.nomgenero}></td>
+					<td th:text=${p.paispelicula}></td>
+					<td th:text=${p.populpelicula}></td>
+					<td>
+						<form action="/cargar" method="get">
+							<input type="hidden" name="codpelicula" th:value="${p.codpelicula}">
+							<button type="submit" class="btn btn-info">Seleccione</button>
+						</form>
+					</td>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
